@@ -4,17 +4,34 @@ import lombok.*;
 
 import java.time.LocalDate;
 
+import com.turing.api.user.Member;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Setter
 @Getter
 @ToString(exclude = {"id"})
+@Entity(name ="accounts")
 public class Account {
+    @Id
+    @Column(name="acc_id",nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     private String accountNumber;  //계좌번호
     private String accountHolder; //예금주
     private double balance;  //잔고
     private LocalDate transactionDate; //거래일자
     private int money;
+
+    @ManyToOne
+    private Member member;
+
 @Builder(builderClassName = "builder")
     public Account(long id, String accountNumber, String accountHolder, double balance, LocalDate transactionDate, int money ){
     this.id = id;
@@ -23,4 +40,9 @@ public class Account {
     this.balance = balance;
     this.transactionDate = transactionDate;
     this.money = money;
+}
+
+public void setBalance(double d) {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'setBalance'");
 }}

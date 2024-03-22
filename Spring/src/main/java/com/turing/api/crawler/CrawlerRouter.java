@@ -17,11 +17,11 @@ public enum CrawlerRouter {
     BUGS("bugs",i->{
         System.out.println("bugs Music");
         Map<String, ?> map = null;
-        try {
-            map = CrawlerController.getInstance().findBugsMusic(i);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        // try {
+        //     map = CrawlerController.getInstance().findBugsMusic(i);
+        // } catch (IOException e) {
+        //     throw new RuntimeException(e);
+        // }
         Iterator<Element> rank = (Iterator<Element>) map.get("rank");
         Iterator<Element> artist = (Iterator<Element>) map.get("artist");
         Iterator<Element> title = (Iterator<Element>) map.get("title");
@@ -34,11 +34,11 @@ public enum CrawlerRouter {
     MELON("melon",i->{
         System.out.println("melon Music");
         Map<String, ?> map2 = null;
-        try {
-            map2 = CrawlerController.getInstance().findMelonMusic(i);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        // try {
+        //     map2 = CrawlerController.getInstance().findMelonMusic(i);
+        // } catch (IOException e) {
+        //     throw new RuntimeException(e);
+        // }
         Iterator<Element> rank2 = (Iterator<Element>) map2.get("rank");
         Iterator<Element> artist2 = (Iterator<Element>) map2.get("artist");
         Iterator<Element> title2 = (Iterator<Element>) map2.get("title");

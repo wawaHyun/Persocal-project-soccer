@@ -3,7 +3,6 @@ package com.turing.api.user;
 import java.sql.SQLException;
 import java.util.*;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,50 +16,58 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 public class UserController {
-    @Autowired
+    
     UserService ser;
-
-    @PostMapping("/userName,pw")
-    public Map<String, ?> postIdPw(@RequestBody Map<String, ?> map) {
-        String userName = (String) map.get("userName");
-        String pw = (String) map.get("pw");
-        Map<String, String> userMap = new HashMap<>();
-        userMap.put("userName", userName);
-        userMap.put("pw", pw);
-        return userMap;
-    }
-
     UserServiceImpl auth;
+    private final UserRepository repo;
 
-    public Map<String, ?> save(Scanner sc) throws SQLException {
-        System.out.println("Please enter information below in order.");
-        System.out.println("ID, PW, name, phoneNum, job, height, weight");
-        System.out.println("jaja 998 jainname 010555 OLdesu 180.0 70.0");
+    @PostMapping(path = "/api/join")
+    public Map<String, ?> join(@RequestBody Map<?, ?>requMap)  {
+        System.out.println("join 들어옴");
+        @SuppressWarnings("null")
+        Member newmem = repo.save(Member.builder()
+        .memId((String)requMap.get("memId"))
+        .memPw((String) requMap.get("memPw"))
+        .memPwRe((String) requMap.get("memPwRe"))
+        .name((String) requMap.get("name"))
+        .phone((String) requMap.get("phone"))
+        .job((String) requMap.get("job"))
+        .height(Double.parseDouble((String)requMap.get("height")))
+        .weight(Double.parseDouble((String)requMap.get("weight")))
+        .build());
 
-        return auth.save(Member.builder()
-                .memId(sc.next())
-                .memPw(sc.next())
-                .name(sc.next())
-                .phone(sc.next())
-                .job(sc.next())
-                .height(sc.nextDouble())
-                .weight(sc.nextDouble())
-                .build());
+        System.out.println("Db에 저장된 정보 "+newmem);
+        Map<String, Messenger> resMap = new HashMap<>();
+        resMap.put("messenge",Messenger.SUCCESS);
+
+        return resMap;
     }
 
-    public Map<String, ?> findAll() throws SQLException {
+
+
+    // @PostMapping(path ="/api/login")
+    // public Map<String, ?> login(@RequestBody Map<String, ?>map) throws SQLException {
+
+    //     Map<String, Member> resMap = new HashMap<>();
+
+    //     resMap.put("member", Member.builder()
+    //             .memId((String)map.get("memId"))
+    //             .memPw((String)map.get("memPw"))
+    //             .build());
+
+    //     Map<String, Messenger> result = new HashMap<>();
+
+    //     result.put("messenge",Messenger.SUCCESS);
+
+    //     return resMap;    }
+
+
+
+
+    public List<Member> findAll() throws SQLException {
         return auth.findAll();
     }
-
-    public Map<String, ?> login(Scanner sc) throws SQLException {
-        System.out.println("Please enter your ID & PW.");
-        return auth.login(Member.builder()
-                .memId(sc.next())
-                .memPw(sc.next())
-                .build());
-    }
-
-    public Map<String, ?> findById(Scanner sc) throws SQLException {
+    public Optional<Member> findById(Scanner sc) throws SQLException {
         System.out.println("Please enter Long ID you want to search for.");
         return auth.findById(sc.nextLong());
     }
@@ -75,7 +82,7 @@ public class UserController {
                 .build());
     }
 
-    public Map<String, ?> delete(Scanner sc) throws SQLException {
+    public Messenger delete(Scanner sc) throws SQLException {
         System.out.println("Please enter you want dalete memid & mempw.");
         return auth.delete(Member.builder()
                 .memId(sc.next())
@@ -83,7 +90,7 @@ public class UserController {
                 .build());
     }
 
-    public Map<String, ?> existsById(Scanner sc) {
+    public Boolean existsById(Scanner sc) {
         return auth.existsById(sc.nextLong());
     }
 
@@ -117,7 +124,7 @@ public class UserController {
         return auth.addUsers();
     }
 
-    public Map<String, ?> getOne(Scanner sc) {
+    public Optional<Member> getOne(Scanner sc) {
         return auth.getOne(sc.next());
     }
 

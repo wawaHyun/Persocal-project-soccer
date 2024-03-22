@@ -1,15 +1,8 @@
 package com.turing.api.user;
 
-import java.sql.SQLException;
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-
 import org.springframework.stereotype.Service;
-
 import com.turing.api.common.AbstractService;
-import com.turing.api.common.UtilService;
-import com.turing.api.common.UtilServiceImpl;
 import com.turing.api.enums.Messenger;
 
 @Service
@@ -19,41 +12,44 @@ public class UserServiceImpl extends AbstractService<Member> implements UserServ
     Map<String, Member> users;
 
     @Override
-    public Map<String, ?> save(Member member) throws SQLException {
-        Messenger result = Messenger.FAIL;
-        if (!users.containsKey(member.getMemId())) {
-            users.put(member.getMemId(), member);
-            return repo.tain(member);
-        }
-        System.out.println("same ID already exists.");
-        return null;
+    public Messenger save(Member mem){
+
+        // Messenger result = Messenger.FAIL;
+        // if (!users.containsKey(mem.getMemId())) {
+            // users.put(mem.getMemId());
+            // return repo.tain(member);
+        // }
+        // System.out.println("same ID already exists.");
+        return Messenger.SUCCESS;
     }
 
 
+    
     @Override
-    public Map<String, ?> findAll() throws SQLException {
+    public Map<String, ?> login(Member member)  {
+        Map<String,Member> resMap = new HashMap<>();
+        
+        // if (!member.getMemId().equals(list.get(0))) {
+        //     return "ID [" + member.getMemId() + "] is wrong ID";
+        // }
+        // if (!member.getMemPw().equals(list.get(1))) {
+        //     return "Wrong password input.";
+        // }
+
+
+        return null;
+    }
+    
+    @Override
+    public List<Member> findAll()  {
         // return new ArrayList<>(users.values());
-        List<Member> list = repo.findAll();
-        list.forEach(System.out::println);
+        // List<Member> list = repo.findAll();
+        // list.forEach(System.out::println);
         System.out.println("Ok!");
         return null;
     }
-
     @Override
-    public Map<String, ?> login(Member member) throws SQLException {
-        List<String> list = repo.login(member);
-
-        if (!member.getMemId().equals(list.get(0))) {
-            return "ID [" + member.getMemId() + "] is wrong ID";
-        }
-        if (!member.getMemPw().equals(list.get(1))) {
-            return "Wrong password input.";
-        }
-        return null;
-    }
-
-    @Override
-    public Map<String, ?> findById(Long id) throws SQLException {
+    public Optional<Member> findById(Long id)  {
         // return Optional.of(users
         // .values().stream()
         // .filter(i->i.getId().equals(id))
@@ -63,7 +59,7 @@ public class UserServiceImpl extends AbstractService<Member> implements UserServ
     }
 
     @Override
-    public Map<String, ?> updatePassword(Member member) throws SQLException {
+    public Map<String, ?> updatePassword(Member member)  {
         if (!member.getMemPw().equals(member.getMemPwRe())) {
             System.out.println("pw and reconfirm pw is Different.");
             return null;
@@ -76,20 +72,20 @@ public class UserServiceImpl extends AbstractService<Member> implements UserServ
     }
 
     @Override
-    public Messenger delete(Member member) throws SQLException {
+    public Messenger delete(Member member)  {
         // users.remove(member.getMemId());
-        List<String> list = repo.login(member);
-        if (!member.getMemId().equals(list.get(0))) {
-            System.out.println("ID [" + member.getMemId() + "] is wrong ID");
-            return null;
-        }
-        if (!member.getMemPw().equals(list.get(1))) {
-            System.out.println("Wrong password input.");
-            return null;
-        }
-        System.out.println("ID n PW is oK");
-        repo.delete(member);
-        System.out.println("successful delete.");
+        // List<String> list = repo.login(member);
+        // if (!member.getMemId().equals(list.get(0))) {
+        //     System.out.println("ID [" + member.getMemId() + "] is wrong ID");
+        //     return null;
+        // }
+        // if (!member.getMemPw().equals(list.get(1))) {
+        //     System.out.println("Wrong password input.");
+        //     return null;
+        // }
+        // System.out.println("ID n PW is oK");
+        // repo.delete(member);
+        // System.out.println("successful delete.");
 
         return null;
     }
@@ -108,11 +104,12 @@ public class UserServiceImpl extends AbstractService<Member> implements UserServ
     @Override
     public Map<String, ?> findUsersByNemeFramMap(String memid) {
         System.out.println("11 :" + memid);
-        return users
-                .entrySet()
-                .stream()
-                .filter(i -> i.getKey().equals(memid))
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+        // return users
+        //         .entrySet()
+        //         .stream()
+        //         .filter(i -> i.getKey().equals(memid))
+        //         .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+        return null;
     }
 
     @Override
@@ -120,20 +117,22 @@ public class UserServiceImpl extends AbstractService<Member> implements UserServ
         System.out.println("findUsersByJob 파라미터 : " + userJob);
         users.values()
                 .stream().forEach(i -> System.out.println("직업 :" + i.getJob()));
-        return users
-                .values()
-                .stream()
-                .filter(i -> i.getJob().equals(userJob))
-                .collect(Collectors.toList());
+        // return users
+        //         .values()
+        //         .stream()
+        //         .filter(i -> i.getJob().equals(userJob))
+        //         .collect(Collectors.toList());
+        return null;
     }
 
     @Override
     public Map<String, ?> findUsersByJobFromMap(String job) {
-        return users
-                .entrySet()
-                .stream()
-                .filter(i -> i.getValue().getJob().equals(job))
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+        // return users
+        //         .entrySet()
+        //         .stream()
+        //         .filter(i -> i.getValue().getJob().equals(job))
+        //         .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+        return null;
     }
 
     @Override
@@ -142,7 +141,7 @@ public class UserServiceImpl extends AbstractService<Member> implements UserServ
     }
 
     @Override
-    public Map<String, ?> getOne(String memid) {
+    public Optional<Member> getOne(String memid) {
         return null;
     }
 
@@ -153,17 +152,17 @@ public class UserServiceImpl extends AbstractService<Member> implements UserServ
 
     @Override
     public String addUsers() {
-        IntStream.range(0, 5)
-                .mapToObj(i -> util.createRandomMemberId())
-                .forEach(i -> {
-                    users.put(i, Member.builder()
-                            .memId(i)
-                            .memPw("1111")
-                            .name(util.createRandomName())
-                            .job(util.createRandomJob())
-                            .address((long) (util.createRandomInteger(10, 99)))
-                            .build());
-                });
+    //     IntStream.range(0, 5)
+    //             .mapToObj(i -> util.createRandomMemberId())
+    //             .forEach(i -> {
+    //                 users.put(i, Member.builder()
+    //                         .memId(i)
+    //                         .memPw("1111")
+    //                         .name(util.createRandomName())
+    //                         .job(util.createRandomJob())
+    //                         .address((long) (util.createRandomInteger(10, 99)))
+    //                         .build());
+    //             });
         return "add dummy : " + users.size();
     }
 
@@ -173,7 +172,7 @@ public class UserServiceImpl extends AbstractService<Member> implements UserServ
     }
 
     @Override
-    public Map<String, ?> findUsers() throws SQLException {
+    public Map<String, ?> findUsers() {
         return null;
     }
 
@@ -188,12 +187,12 @@ public class UserServiceImpl extends AbstractService<Member> implements UserServ
     }
 
     @Override
-    public Map<String, ?> tain(Member mems) throws SQLException {
+    public Map<String, ?> tain(Member mems)  {
         return null;
     }
 
     @Override
-    public Map<String, ?> ls() throws SQLException {
+    public Map<String, ?> ls() {
         return null;
     }
 
