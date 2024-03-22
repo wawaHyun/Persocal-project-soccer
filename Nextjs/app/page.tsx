@@ -30,6 +30,7 @@ export default function Home() {
     ))
     }
   return <>
+  <h1>개인 page!!!!!!!!</h1>
 <div>enter your name.</div><br />
 <input type="text" onChange={handlechange}/><br />
 <button onClick={handleClik}>input</button>
