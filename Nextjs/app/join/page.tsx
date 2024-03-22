@@ -9,10 +9,8 @@ const SERVER = 'http://localhost:8080'
 export default function join(){
     const [memId,setMemId] = useState('')
     const [memPw,setMemPw] = useState('')
-    const [memPwRe,setMemPwRe] = useState('')
     const [name,setName] = useState('')
     const [phone,setPhone] = useState('')
-    // const [address,setAddress] = useState('')
     const [job,setJob] = useState('')
     const [height,setHeight] = useState('')
     const [weight,setWeight] = useState('')
@@ -23,9 +21,6 @@ export default function join(){
     
     const handleMemPw = (e:any)=>{
       setMemPw(e.target.value);
-    }
-    const handleMemPwRe = (e:any)=>{
-        setMemPwRe(e.target.value);
     }
     const handleName = (e:any)=>{
         setName(e.target.value);
@@ -44,7 +39,7 @@ export default function join(){
     }
     const handleSubmit = ()=>{
         const url = `${SERVER}/api/join`
-        const data = {memId,memPw,memPwRe,name,phone,job,height,weight}
+        const data = {memId,memPw,name,phone,job,height,weight}
         const config = {
             headers: {
                 "Cache-Control": "no-cache",
@@ -59,7 +54,6 @@ export default function join(){
     }
     const handleCancel = ()=>{
       alert('Ok, back to main..');
-      <a href={""}>join</a>;
     }
 
     const router = useRouter();
@@ -76,9 +70,6 @@ export default function join(){
     <br /><br />
     <label htmlFor="memPw"><b>Password</b></label><br />
     <input type="password" placeholder="Enter Password" name="memPw" onChange={handleMemPw} required/>
-    <br /><br />
-    <label htmlFor="pmemPwRe"><b>Confirm Password</b></label><br />
-    <input type="password" placeholder="Enter Confirm Password" name="pmemPwRe" onChange={handleMemPwRe} required/>
     <br /><br />
     <label htmlFor="name"><b>NAME</b></label><br />
     <input type="text" placeholder="Enter name" name="name" onChange={handleName} required/>
