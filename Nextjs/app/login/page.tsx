@@ -30,7 +30,10 @@ export default function Login() {
             }
         }
         axios.post(url, data, config)
-            .then(res => { alert(JSON.stringify(res.data)) })
+            .then(res => {
+                const messenge = res.data.Messenge;
+                alert(messenge)
+             });
     }
     return (<>
         <h1>개인 page!!!!!!!!</h1>
