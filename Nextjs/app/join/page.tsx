@@ -2,11 +2,12 @@
 
 import { useState } from "react";
 import axios from "axios";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/router";
 
 const SERVER = 'http://localhost:8080'
 
 export default function join(){
+  const router = useRouter();
     const [memId,setMemId] = useState('')
     const [memPw,setMemPw] = useState('')
     const [name,setName] = useState('')
@@ -55,8 +56,6 @@ export default function join(){
     const handleCancel = ()=>{
       alert('Ok, back to main..');
     }
-
-    const router = useRouter();
 
     return(<>
     <div className="container">

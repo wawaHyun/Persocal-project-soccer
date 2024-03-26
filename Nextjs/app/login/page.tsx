@@ -2,6 +2,7 @@
 
 import axios from "axios"
 import { useState } from "react"
+import { useRouter } from "next/router"
 
 const SERVER = 'http://localhost:8080'
 export default function Login() {
@@ -33,8 +34,12 @@ export default function Login() {
             .then(res => {
                 const messenge = res.data.Messenge;
                 alert(messenge)
+                router.push("./article/newArticle");
              });
     }
+    
+  const router = useRouter();
+
     return (<>
         <h1>개인 page!!!!!!!!</h1>
         <h2>로그인 하세요</h2>

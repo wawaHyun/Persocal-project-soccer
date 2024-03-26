@@ -36,6 +36,7 @@ export default function Home() {
 <button onClick={handleClik}>input</button>
 <br /><br />
 <Link href ={"/login"}>로그인</Link><br /><br />
-<Link href={"/join"}>join</Link>
+<Link href={"/join"}>join</Link><br /><br />
+<Link href={"/article/newArticle"}>newArticle</Link><br /><br />
 </>
 }
