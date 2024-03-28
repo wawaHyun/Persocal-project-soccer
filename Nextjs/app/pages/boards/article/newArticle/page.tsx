@@ -3,6 +3,8 @@
 import axios from "axios"
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
+import AxiosConfig from "@/app/organisms/configs/axios-config";
+import { API } from "@/app/atoms/enums/API";
 
 interface IArticle {
     id: number,
@@ -11,24 +13,14 @@ interface IArticle {
     writer: string,
     registerDate: string
 }
-const SERVER = 'http://localhost:8080'
 
 export default function NewArticle() {
     const router = useRouter();
     const [articles, setArticles] = useState([]);
 
-    const url = `${SERVER}/api/articles`
-    const config = {
-        headers: {
-            "Cache-Control": "no-cache",
-            "Content-Type": "application/json",
-            Authorization: `Bearer blah ~`,
-            "Access-Control-Allow-Origin": "*",
-        }
-    }
 
     useEffect(() => {
-        axios.get(url, config)
+        axios.get(`${API.SERVER}`, AxiosConfig())
             .then(res => {
                 const response = res.data.message
                 console.log((response))

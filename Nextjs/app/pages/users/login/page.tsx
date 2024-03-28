@@ -3,8 +3,9 @@
 import axios from "axios"
 import { useState } from "react"
 import { useRouter } from "next/navigation"
+import { API } from "@/app/atoms/enums/API"
+import AxiosConfig from "@/app/organisms/configs/axios-config"
 
-const SERVER = 'http://localhost:8080'
 export default function Login() {
 
     const [username, setUsername] = useState('')
@@ -19,24 +20,15 @@ export default function Login() {
     }
 
     const handleSubmit = () => {
-        alert("입력완료")
-        const url = `${SERVER}/api/login`
-        const data = { username, password }
-        const config = {
-            headers: {
-                "Cache-Control": "no-cache",
-                "Content-Type": "application/json",
-                Authorization: `Bearer blah ~`,
-                "Access-Control-Allow-Origin": "*",
-            }
+        alert("입력완료")    
         }
-        axios.post(url, data, config)
+        axios.post(`${API.SERVER}/api/login`, { username, password }, AxiosConfig())
             .then(res => {
                 const messenge = res.data.Messenge;
                 alert(messenge)
                 router.push("./article/newArticle");
              });
-    }
+    
     
   const router = useRouter();
 

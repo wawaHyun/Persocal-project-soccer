@@ -25,7 +25,6 @@ public class AccountController {
         System.out.println("Please enter the com.turing.api.account holder.");
         return accSer.save(Account.builder()
                 .accountNumber(util.createRandomAccount())
-                .accountHolder(sc.next())
                 .balance(0)
                 .transactionDate(nowDate)
                 .build());
@@ -37,8 +36,6 @@ public class AccountController {
         return accSer.deposit(Account.builder()
                 .transactionDate(nowDate)
                 .accountNumber(sc.next())
-                .accountHolder(sc.next())
-                .money(sc.nextInt())
                 .build());
     }
 
@@ -48,8 +45,6 @@ public class AccountController {
         return accSer.deposit(Account.builder()
                 .transactionDate(nowDate)
                 .accountNumber(sc.next())
-                .accountHolder(sc.next())
-                .money(sc.nextInt())
                 .build());
     }
 

@@ -1,11 +1,16 @@
 
 
 package com.study.api.article;
+import com.study.api.board.Board;
+import com.study.api.user.Member;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.*;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -19,14 +24,25 @@ public class Article {
     private Long id ;
     private String title ;
     private String content;
-    private String writer;
     private String registerDate;
+
+    @ManyToOne
+    @JoinColumn(name = "board_id", referencedColumnName = "board_id")
+    private Board board;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
+    private Member writer;
+
     @Builder(builderClassName =  "builer")
     public Article(Long id, String title, String content, 
-    String writer,String registerDate){
+    String registerDate
+    , Board board, Member writer
+    ){
         this.id = id;
         this.title = title;
         this.content = content;
-        this.writer = writer;
         this.registerDate = registerDate;
+        this.board = board;
+        this.writer = writer;
     }}

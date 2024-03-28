@@ -15,62 +15,52 @@ public class AccountServiceImpl extends AbstractService<Account> implements Acco
 
     @Override
     public String deposit(Account accountInfor) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deposit'");
+     return null;
     }
 
     @Override
     public String withdraw(Account accountInfor) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'withdraw'");
+        return null;
     }
 
     @Override
     public String getBalance(Account accountInfor) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getBalance'");
+        return null;
     }
 
     @Override
     public Messenger save(Account t) throws SQLException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'save'");
+        return null;
     }
 
     @Override
     public List<Account> findAll() throws SQLException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findAll'");
+        return null;
     }
 
     @Override
     public Optional<Account> findById(Long id) throws SQLException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findById'");
+        return null;
     }
 
     @Override
     public String count() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'count'");
+        return null;
     }
 
     @Override
     public Optional<Account> getOne(String memberid) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getOne'");
+        return null;
     }
 
     @Override
     public Messenger delete(Account t) throws SQLException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+        return null;
     }
 
     @Override
     public Boolean existsById(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'existsById'");
+        return null;
     }
 
 }

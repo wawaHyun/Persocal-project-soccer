@@ -3,6 +3,7 @@ package com.study.api.user;
 import java.util.*;
 
 import com.study.api.account.Account;
+import com.study.api.article.Article;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -16,13 +17,15 @@ import lombok.*;
 @Getter
 @ToString(exclude = {"id"})
 @Entity(name="members")
-
 public class Member {
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "user_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Long id;
+
+        @Column(name = "mem_id")
         private String memId;
+        @Column(name = "mem_pw")
         private String memPw;
         private String name;
         private String phone;
@@ -31,12 +34,16 @@ public class Member {
         private Double height;
         private Double weight;
 
-        @OneToMany(mappedBy = "member")
+        @OneToMany(mappedBy = "accHolder") 
         private List<Account> account;
+
+        @OneToMany(mappedBy = "writer")
+        private List<Article> article;
 
         @Builder(builderClassName = "builder")
         public Member(Long id,String memId, String memPw, String name,
-                      String phone, Long address, String job, Double height, Double weight){
+                      String phone, Long address, String job, Double height, Double weight
+                      ,List<Account> account, List<Article> article){
             this.id = id;
             this.memId = memId;
             this.memPw = memPw;
@@ -46,5 +53,7 @@ public class Member {
             this.job = job;
             this.height = height;
             this.weight = weight;
+            this.account = account;
+            this.article = article;
         }
 }

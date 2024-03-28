@@ -3,8 +3,9 @@
 import { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-
-const SERVER = 'http://localhost:8080'
+import { config } from "process";
+import AxiosConfig from "@/app/organisms/configs/axios-config";
+import { API } from "@/app/atoms/enums/API";
 
 export default function Join() {
 
@@ -41,17 +42,9 @@ export default function Join() {
     setWeight(e.target.value);
   }
   const handleSubmit = () => {
-    const url = `${SERVER}/api/join`
-    const data = { memId, memPw, name, phone, job, height, weight }
-    const config = {
-      headers: {
-        "Cache-Control": "no-cache",
-        "Content-Type": "application/json",
-        Authorization: `Bearer blah ~`,
-        "Access-Control-Allow-Origin": "*",
-      }
-    }
-    axios.post(url, data, config)
+ 
+    axios.post(`${API.SERVER}/api/join`, { memId, memPw, name, phone, job, height, weight }
+    , AxiosConfig())
       .then(res => {
         alert(JSON.stringify(res.data))
         router.push("./login")
@@ -61,7 +54,12 @@ export default function Join() {
     alert('Ok, back to main..');
   }
 
-  return (<>
+  const style = {
+    backgroundColor: 'black',
+    color : 'white',
+  }
+
+  return (<body style={style}>
     <div className="container">
       <h1>개인 페이지~!!!!!</h1>
       <h1>Sign Up</h1>
@@ -69,7 +67,7 @@ export default function Join() {
       <hr />   <br />
 
       <label htmlFor="memId"><b>ID</b></label><br />
-      <input type="text" placeholder="Enter ID" name="id" onChange={handleMemId} required />
+      <input type="text" placeholder="Enter ID" name="id" onChange={handleMemId}  required />
       <br /><br />
       <label htmlFor="memPw"><b>Password</b></label><br />
       <input type="password" placeholder="Enter Password" name="memPw" onChange={handleMemPw} required />
@@ -97,9 +95,10 @@ export default function Join() {
       <p>By creating an account you agree to our <a href="#" style={{ color: 'dodgerblue' }}>Terms & Privacy</a>.</p>
       <br />
       <div className="clearfix">
-        <button type="button" className="cancelbtn" onClick={handleCancel}>Cancel</button><br />
-        <button type="submit" className="signupbtn" onClick={handleSubmit}>Sign Up</button>
+        <button type="button" className="cancelbtn" onClick={handleCancel} >Cancel</button>
+        <button type="submit" className="signupbtn" onClick={handleSubmit}>Sign Up</button><br />
       </div>
     </div>
-  </>)
+
+  </body>)
 }

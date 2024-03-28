@@ -23,25 +23,23 @@ public class Account {
     @Column(name="acc_id",nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
     private String accountNumber;  //계좌번호
     private String accountHolder; //예금주
     private double balance;  //잔고
     private LocalDate transactionDate; //거래일자
-    private int money;
 
     @ManyToOne
-    @JoinColumn(name="id", referencedColumnName = "id")
-    private Member member;
+    @JoinColumn(name="user_id", referencedColumnName = "user_id")
+    private Member accHolder;
 
 @Builder(builderClassName = "builder")
-    public Account(long id, String accountNumber, String accountHolder, 
-    double balance, LocalDate transactionDate, int money ){
+    public Account(long id, String accountNumber, 
+    double balance, LocalDate transactionDate, Member accHolder
+    ){
     this.id = id;
     this.accountNumber = accountNumber;
-    this.accountHolder = accountHolder;
     this.balance = balance;
     this.transactionDate = transactionDate;
-    this.money = money;
+    this.accHolder = accHolder;
 }
 }
