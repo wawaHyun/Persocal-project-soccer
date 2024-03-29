@@ -37,13 +37,15 @@ public class Member {
         @OneToMany(mappedBy = "accHolder") 
         private List<Account> account;
 
-        @OneToMany(mappedBy = "writer")
-        private List<Article> article;
+        // @OneToMany(mappedBy = "writer")
+        // private List<Article> article;
 
         @Builder(builderClassName = "builder")
         public Member(Long id,String memId, String memPw, String name,
                       String phone, Long address, String job, Double height, Double weight
-                      ,List<Account> account, List<Article> article){
+                      ,List<Account> account
+                    //   ,List<Article> article
+                      ){
             this.id = id;
             this.memId = memId;
             this.memPw = memPw;
@@ -54,6 +56,6 @@ public class Member {
             this.height = height;
             this.weight = weight;
             this.account = account;
-            this.article = article;
+            // this.article = article;
         }
 }

@@ -1,10 +1,11 @@
 
 'use client'
 
-import CompanyColumns from "@/app/organisms/columns/company-columns";
-import CompanyRows from "@/app/organisms/rows/company-rows";
+import CompanyColumns from "@/app/component/columns/company-columns";
+import CompanyRows from "@/app/component/rows/company-rows";
+import { NextPage } from "next";
 
-export default function Companies() {
+const Companies:NextPage=() =>{
 
 
 
@@ -24,7 +25,8 @@ export default function Companies() {
       </tbody>
     </table>
   </>
-
-
   )
 }
+
+
+export default Companies;

@@ -24,25 +24,28 @@ public class Article {
     private Long id ;
     private String title ;
     private String content;
+    @Column(name="register_date")
     private String registerDate;
 
     @ManyToOne
-    @JoinColumn(name = "board_id", referencedColumnName = "board_id")
+    @JoinColumn(name = "board_id")
     private Board board;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
-    private Member writer;
+    // @ManyToOne
+    // @JoinColumn(name = "user_id", referencedColumnName = "user_id")
+    // private Member writer;
 
-    @Builder(builderClassName =  "builer")
+    @Builder(builderClassName="builder")
     public Article(Long id, String title, String content, 
     String registerDate
-    , Board board, Member writer
+    , Board board
+    // , Member writer
     ){
         this.id = id;
         this.title = title;
         this.content = content;
         this.registerDate = registerDate;
         this.board = board;
-        this.writer = writer;
-    }}
+        // this.writer = writer;
+    }
+}

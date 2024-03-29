@@ -3,11 +3,12 @@
 import { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { config } from "process";
-import AxiosConfig from "@/app/organisms/configs/axios-config";
-import { API } from "@/app/atoms/enums/API";
+import AxiosConfig from "@/redux/common/configs/axios-config";
+import { API } from "@/redux/common/enums/API";
+import { PG } from "@/redux/common/enums/PG";
+import { NextPage } from "next";
 
-export default function Join() {
+const Join:NextPage=() =>{
 
   const router = useRouter();
 
@@ -47,19 +48,15 @@ export default function Join() {
     , AxiosConfig())
       .then(res => {
         alert(JSON.stringify(res.data))
-        router.push("./login")
+        router.push(`${PG.USER}/login`)
       })
   }
   const handleCancel = () => {
     alert('Ok, back to main..');
   }
 
-  const style = {
-    backgroundColor: 'black',
-    color : 'white',
-  }
 
-  return (<body style={style}>
+  return (<>
     <div className="container">
       <h1>개인 페이지~!!!!!</h1>
       <h1>Sign Up</h1>
@@ -100,5 +97,8 @@ export default function Join() {
       </div>
     </div>
 
-  </body>)
+  </>)
 }
+
+
+export default Join;

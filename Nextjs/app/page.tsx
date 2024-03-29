@@ -4,7 +4,7 @@ import { useState } from "react";
 import axios from 'axios';
 import Link from "next/link";
 import './globals.css'
-import { PG } from "./atoms/enums/PG";
+import { PG } from "../redux/common/enums/PG";
 const SERVER = 'http://localhost:8080'
 
 export default function Home() {
@@ -73,7 +73,7 @@ export default function Home() {
                     </div>
                     <div
                         className="absolute top-0 left-0 bg-red-500 text-white font-semibold text-xs w-[14px] h-[14px] flex items-center justify-center rounded-full">
-                        4
+                        99
                     </div>
                 </div>
             </div>
@@ -127,7 +127,7 @@ export default function Home() {
                     </div>
                     companies
                 </a>
-                <a href={`${PG.BOARD}/article/newArticle`}
+                <a href={`${PG.BOARD}/articles`}
                     className="text-white bg-black flex items-center gap-2 hover:bg-white hover:text-black rounded-full px-6 py-4 text-xl font-medium transition duration-250">
                     <div>
                         <svg className="h-7 w-7" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
@@ -138,8 +138,23 @@ export default function Home() {
                             <circle cx="12" cy="13" r="3" />
                         </svg>
                     </div>
-                    newArticle
+                    ALL articles
                 </a>
+
+                <a href={`${PG.BOARD}/articles/writer`}
+                    className="text-white bg-black flex items-center gap-2 hover:bg-white hover:text-black rounded-full px-6 py-4 text-xl font-medium transition duration-250">
+                    <div>
+                        <svg className="h-7 w-7" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                            stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" />
+                            <path
+                                d="M5 7h1a2 2 0 0 0 2 -2a1 1 0 0 1 1 -1h6a1 1 0 0 1 1 1a2 2 0 0 0 2 2h1a2 2 0 0 1 2 2v9a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-9a2 2 0 0 1 2 -2" />
+                            <circle cx="12" cy="13" r="3" />
+                        </svg>
+                    </div>
+                    Article
+                </a>
+
                 <a href={`${PG.DEMO}/counter`}
                     className="flex items-center gap-2 text-white hover:bg-white hover:text-black rounded-full px-6 py-4 text-xl font-medium transition duration-250">
                     <div>
@@ -151,9 +166,10 @@ export default function Home() {
                                 d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                         </svg>
                     </div>
-                    conter demo
+                    counter demo
                 </a>
-                <a href={`${PG.DEMO}/counter/container`}
+
+                <a href={`${PG.DEMO}/redux-counter`}
                 className="flex items-center gap-2 text-white hover:bg-white hover:text-black rounded-full px-6 py-4 text-xl font-medium transition duration-250">
                     <div>
                         <svg className="h-7 w-7" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
@@ -162,8 +178,21 @@ export default function Home() {
                                 d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15M12 9l3 3m0 0-3 3m3-3H2.25" />
                         </svg>
                     </div>
-                    container
+                    redux counter demo
                 </a>
+
+                <a href="#"
+                className="flex items-center gap-2 text-white hover:bg-white hover:text-black rounded-full px-6 py-4 text-xl font-medium transition duration-250">
+                    <div>
+                        <svg className="h-7 w-7" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                            stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15M12 9l3 3m0 0-3 3m3-3H2.25" />
+                        </svg>
+                    </div>
+                    빈버튼
+                </a>
+
             </div>
         </div>
   </>

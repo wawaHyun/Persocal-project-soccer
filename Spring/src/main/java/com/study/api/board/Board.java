@@ -21,7 +21,7 @@ public class Board {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "board_id")
-    private long id;
+    private Long id;
 
     @Column(name = "board_name")
     private String boardName;
@@ -35,12 +35,12 @@ public class Board {
 
     @Builder(builderClassName =  "builer")
     public Board(long id, String boardName, String boardType
-    ,List<Article> articles
+    // ,List<Article> articles
     ){
         this.id = id;
         this.boardName = boardName;
         this.boardType = boardType;
-        this.articles = articles;
+        // this.articles = articles;
     }
 
 }

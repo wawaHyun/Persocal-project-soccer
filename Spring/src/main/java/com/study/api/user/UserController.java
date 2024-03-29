@@ -25,6 +25,7 @@ public class UserController {
     public Map<String, ?> join(@RequestBody Map<?, ?>requMap)  {
         System.out.println("join 들어옴");
         @SuppressWarnings("null")
+        
         Member newmem = repo.save(Member.builder()
         .memId((String)requMap.get("memId"))
         .memPw((String) requMap.get("memPw"))

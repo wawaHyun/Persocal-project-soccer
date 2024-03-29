@@ -3,10 +3,12 @@
 import axios from "axios"
 import { useState } from "react"
 import { useRouter } from "next/navigation"
-import { API } from "@/app/atoms/enums/API"
-import AxiosConfig from "@/app/organisms/configs/axios-config"
+import { API } from "@/redux/common/enums/API"
+import AxiosConfig from "@/redux/common/configs/axios-config"
+import { PG } from "@/redux/common/enums/PG"
+import { NextPage } from "next"
 
-export default function Login() {
+const Login:NextPage=() => {
 
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
@@ -20,17 +22,17 @@ export default function Login() {
     }
 
     const handleSubmit = () => {
-        alert("입력완료")    
-        }
+        alert("입력완료")
+
         axios.post(`${API.SERVER}/api/login`, { username, password }, AxiosConfig())
             .then(res => {
                 const messenge = res.data.Messenge;
                 alert(messenge)
-                router.push("./article/newArticle");
-             });
-    
-    
-  const router = useRouter();
+                router.push(`${PG.BOARD}/article/newArticle`);
+            });
+    }
+
+    const router = useRouter();
 
     return (<>
         <h1>개인 page!!!!!!!!</h1>
@@ -43,3 +45,5 @@ export default function Login() {
 
     </>)
 }
+
+export default Login;
