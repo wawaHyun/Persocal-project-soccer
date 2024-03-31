@@ -28,7 +28,8 @@ public class Article {
     private String registerDate;
 
     @ManyToOne
-    @JoinColumn(name = "board_id")
+    @JoinColumn(name = "board_id",referencedColumnName = "board_id")
+    @JsonBackReference
     private Board board;
 
     // @ManyToOne
