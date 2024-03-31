@@ -1,4 +1,5 @@
 
+
 package com.study.api.board;
 import java.util.List;
 
@@ -30,6 +31,7 @@ public class Board {
     private String boardType;
 
     @OneToMany(mappedBy = "board")
+    @JsonManagedReference
     private List<Article> articles;
 
 
