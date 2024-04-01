@@ -4,7 +4,9 @@ import lombok.*;
 
 import java.time.LocalDate;
 
-import com.study.api.user.Member;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.study.api.user.User;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -29,17 +31,18 @@ public class Account {
     private LocalDate transactionDate; //거래일자
 
     @ManyToOne
-    @JoinColumn(name="user_id", referencedColumnName = "user_id")
-    private Member accHolder;
+    @JoinColumn(name="user_id")
+    private User accHolder;
 
-@Builder(builderClassName = "builder")
+    @Builder(builderClassName = "builder")
     public Account(long id, String accountNumber, 
-    double balance, LocalDate transactionDate, Member accHolder
+    double balance, LocalDate transactionDate
+    // , User accHolder
     ){
     this.id = id;
     this.accountNumber = accountNumber;
     this.balance = balance;
     this.transactionDate = transactionDate;
-    this.accHolder = accHolder;
+    // this.accHolder = accHolder;
 }
 }

@@ -25,16 +25,17 @@ public class Product {
     private String company;
     private int productPrice;
 
-    @OneToMany(mappedBy = "product")
-    private List<Order> orders;
+    // @OneToMany(mappedBy = "product")
+    // private List<Order> orders;
 
     @Builder(builderClassName = "builer")
-    public Product(int productNum, String productName, String company, 
-    int productPrice, List<Order> orders) {
+    public Product(int productNum, String productName, String company, int productPrice
+    // , List<Order> orders
+    ) {
         this.productNum = productNum;
         this.productName = productName;
         this.company = company;
         this.productPrice = productPrice;
-        this.orders = orders;
+        // this.orders = orders;
     }
 }

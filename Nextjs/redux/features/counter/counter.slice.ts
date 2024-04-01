@@ -4,10 +4,10 @@ import { createSlice } from "@reduxjs/toolkit";
 import { initialState } from './counter.init';
 
 
-export const counterSlice = createSlice({
-  name: "counter",
-  initialState,
-  reducers: {
+export const counterSlice = createSlice({ //전체store를 Slice하여 쪼갬
+  name: "counter", //key
+  initialState, // 속성
+  reducers: { //기능, 2가지로 나뉨.
     handlePlus: (state) => {
       state.value += 1;
     },

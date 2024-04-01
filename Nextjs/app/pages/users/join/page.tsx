@@ -12,20 +12,20 @@ const Join:NextPage=() =>{
 
   const router = useRouter();
 
-  const [memId, setMemId] = useState('')
-  const [memPw, setMemPw] = useState('')
+  const [username, setusername] = useState('')
+  const [password, setpassword] = useState('')
   const [name, setName] = useState('')
   const [phone, setPhone] = useState('')
   const [job, setJob] = useState('')
   const [height, setHeight] = useState('')
   const [weight, setWeight] = useState('')
 
-  const handleMemId = (e: any) => {
-    setMemId(e.target.value);
+  const handleUsername = (e: any) => {
+    setusername(e.target.value);
   }
 
-  const handleMemPw = (e: any) => {
-    setMemPw(e.target.value);
+  const handlePassword = (e: any) => {
+    setpassword(e.target.value);
   }
   const handleName = (e: any) => {
     setName(e.target.value);
@@ -44,7 +44,7 @@ const Join:NextPage=() =>{
   }
   const handleSubmit = () => {
  
-    axios.post(`${API.SERVER}/api/join`, { memId, memPw, name, phone, job, height, weight }
+    axios.post(`${API.SERVER}/api/join`, { username, password, name, phone, job, height, weight }
     , AxiosConfig())
       .then(res => {
         alert(JSON.stringify(res.data))
@@ -64,10 +64,10 @@ const Join:NextPage=() =>{
       <hr />   <br />
 
       <label htmlFor="memId"><b>ID</b></label><br />
-      <input type="text" placeholder="Enter ID" name="id" onChange={handleMemId}  required />
+      <input type="text" placeholder="Enter ID" name="id" onChange={handleUsername}  required />
       <br /><br />
       <label htmlFor="memPw"><b>Password</b></label><br />
-      <input type="password" placeholder="Enter Password" name="memPw" onChange={handleMemPw} required />
+      <input type="password" placeholder="Enter Password" name="memPw" onChange={handlePassword} required />
       <br /><br />
       <label htmlFor="name"><b>NAME</b></label><br />
       <input type="text" placeholder="Enter name" name="name" onChange={handleName} required />

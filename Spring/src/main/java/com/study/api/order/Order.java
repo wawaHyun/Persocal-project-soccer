@@ -1,7 +1,7 @@
 package com.study.api.order;
 
 import com.study.api.product.Product;
-import com.study.api.user.Member;
+import com.study.api.user.User;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -30,19 +30,21 @@ public class Order {
     private String orderDate;
 
     @ManyToOne 
-    @JoinColumn(name = "pro_id", referencedColumnName = "pro_id")
+    @JoinColumn(name = "pro_id")
     private Product product;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id",referencedColumnName = "user_id")
-    private Member member;
+    // @ManyToOne
+    // @JoinColumn(name = "user_id")
+    // private User user;
 
     @Builder(builderClassName = "builder")
-    public Order(Long id,String orderDate,Product product,Member member){
+    public Order(Long id,String orderDate,Product product
+    // ,User user
+    ){
         this.id = id;
         this.orderDate = orderDate;
         this.product = product;
-        this.member = member;
+        // this.user = user;
     }
 
 }

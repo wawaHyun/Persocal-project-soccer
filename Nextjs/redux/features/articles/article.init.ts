@@ -1,8 +1,12 @@
-import { IArticle } from "./article.model";
 
-const initialState: IArticle = {
+export const initialState:IArticle = {
     id : 0,
-    title : "",
-    content : "",
-    registerDate : "",
+    title : '',
+    content : '',
+    // board : 0,
+    // writer : 0,
+    registerDate : '',
+    array: []
+
+
 }
